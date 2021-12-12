@@ -276,4 +276,4 @@ SSH into the control node and follow the steps below:
 10.1.0.4 ansible_python_interpreter=/usr/bin/python3
 ```
 - Run the playbook, and navigate to Kibana to check that the installation worked as expected.
-* Kibana can be accessed at http://[your.VM.IP]:5601/app/kibana
+* Kibana can be accessed at (http://[your.VM.IP]:5601/app/kibana)
