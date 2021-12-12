@@ -106,11 +106,42 @@ These files have been tested and used to generate a live ELK deployment on Azure
         name: docker
         enabled: yes
 ```
-### Playbook 3:
+### Playbook 3: filebeat-playbook.yml
+```
+---
+  - name: installing and launching filebeat
+    hosts: webservers
+    become: yes
+    tasks:
 
+    - name: download filebeat deb
+      command: curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.6.1-amd64.deb
+
+    - name: install filebeat deb
+      command: dpkg -i filebeat-7.6.1-amd64.deb
+
+    - name: drop in filebeat.yml
+      copy:
+        src: /etc/ansible/files/filebeat-config.yml
+        dest: /etc/filebeat/filebeat.yml
+
+    - name: enable and configure system module
+      command: filebeat modules enable system
+
+    - name: setup filebeat
+      command: filebeat setup
+
+    - name: start filebeat service
+      command: service filebeat start
+
+    - name: enable service filebeat on boot
+      systemd:
+        name: filebeat
+        enabled: yes
+```
 ### Playbook 4:
 This document contains the following details:
-- Description of the Topologu
+- Description of the Topology
 - Access Policies
 - ELK Configuration
   - Beats in Use
