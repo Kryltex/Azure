@@ -195,11 +195,12 @@ This document contains the following details:
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
 Load balancing ensures that the application will be highly available, in addition to restricting access to the network.
-- _TODO: What aspect of security do load balancers protect? What is the advantage of a jump box?_
+* As computing moves more to the cloud, Load Balancing play an important security role. A Load Balacer can defend an organization against distributed denial-of-service (DDoS) attacks with its off-loading function.
+* The Jump Box minimises the attack surface by utilizing a remote connections to the virtual network through a single virtual machine.
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the configuration and system files.
-- _TODO: What does Filebeat watch for?_
-- _TODO: What does Metricbeat record?_
+* Filebeat is a lightweight way to forword and centralize logs
+* Metricbeat is a lightweight way to send system and service statistics
 
 The configuration details of each machine may be found below.
 
@@ -250,7 +251,7 @@ This ELK server is configured to monitor the following machines:
 
 We have installed the following Beats on these machines:
 * Filebeat
-* Metritbeat
+* Metricbeat
 
 These Beats allow us to collect the following information from each machine:
 - _TODO: In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., `Winlogbeat` collects Windows logs, which we use to track user logon events, etc._
