@@ -4,9 +4,9 @@ The files in this repository were used to configure the network depicted below.
 
 <figure><img src=Diagrams/Azure.png><figcaption></figcaption></figure>
 
-These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the _____ file may be used to install only certain pieces of it, such as Filebeat.
+These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the .yml file may be used to install only certain pieces of it, such as Filebeat.
 
-### Playbook 1:
+### Playbook 1: my-playbook.yml
 ```
 ---
   - name: Config Web VM with Docker
@@ -45,6 +45,11 @@ These files have been tested and used to generate a live ELK deployment on Azure
         enabled: yes
 ```
 
+### Playbook 2:
+
+### Playbook 3:
+
+### Playbook 4:
 This document contains the following details:
 - Description of the Topologu
 - Access Policies
