@@ -4,7 +4,7 @@ The files in this repository were used to configure the network depicted below.
 
 <figure><img src=Diagrams/Azure.png><figcaption></figcaption></figure>
 
-These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the .yml file may be used to install only certain pieces of it, such as Filebeat.
+These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the ansible file may be used to install only certain pieces of it, such as Filebeat.
 
 ### Playbook 1: my-playbook.yml
 ```
@@ -106,6 +106,7 @@ These files have been tested and used to generate a live ELK deployment on Azure
         name: docker
         enabled: yes
 ```
+
 ### Playbook 3: filebeat-playbook.yml
 ```
 ---
@@ -139,7 +140,47 @@ These files have been tested and used to generate a live ELK deployment on Azure
         name: filebeat
         enabled: yes
 ```
-### Playbook 4:
+
+### Playbook 4: metricbeat-playbook.yml
+```
+---
+  - name: Install metric beat
+    hosts: webservers
+    become: true
+    tasks:
+      # Use command module
+    - name: Download metricbeat
+      command: curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.6.1-amd64.deb
+
+      # Use command module
+    - name: install metricbeat
+      command: dpkg -i metricbeat-7.6.1-amd64.deb
+
+      # Use copy module
+    - name: drop in metricbeat config
+      copy:
+        src: /etc/ansible/files/metricbeat-config.yml
+        dest: /etc/metricbeat/metricbeat.yml
+
+      # Use command module
+    - name: enable and configure docker module for metric beat
+      command: metricbeat modules enable docker
+
+      # Use command module
+    - name: setup metric beat
+      command: metricbeat setup
+
+      # Use command module
+    - name: start metric beat
+      command: service metricbeat start
+
+      # Use systemd module
+    - name: enable service metricbeat on boot
+      systemd:
+        name: metricbeat
+        enabled: yes
+```
+
 This document contains the following details:
 - Description of the Topology
 - Access Policies
