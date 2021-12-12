@@ -5,7 +5,7 @@ The files in this repository were used to configure the network depicted below.
 <figure><img src=Diagrams/Azure.png><figcaption></figcaption></figure>
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select 
-portions of the ansible file may be used to install only certain pieces of it, such as Filebeat.
+portions of the YAML file may be used to install only certain pieces of it, such as Filebeat.
 
 ### Playbook 1: my-playbook.yml
 ```
@@ -195,11 +195,12 @@ This document contains the following details:
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
 Load balancing ensures that the application will be highly available, in addition to restricting access to the network.
-- _TODO: What aspect of security do load balancers protect? What is the advantage of a jump box?_
+* As computing moves more to the cloud, Load Balancing plays an important security role. A Load Balacer can defend an organization against distributed denial-of-service (DDoS) attacks with its off-loading function.
+* The Jump Box minimises the attack surface by utilizing a remote connections to the virtual network through a single virtual machine.
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the configuration and system files.
-- _TODO: What does Filebeat watch for?_
-- _TODO: What does Metricbeat record?_
+* Filebeat is a lightweight way to forword and centralize logs
+* Metricbeat is a lightweight way to send system and service statistics
 
 The configuration details of each machine may be found below.
 
@@ -232,23 +233,29 @@ A summary of the access policies in place can be found in the table below.
 ### Elk Configuration
 
 Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because...
-- _TODO: What is the main advantage of automating configuration with Ansible?_
+* There are many advantages of automating configurations with Ansible, Playbooks are written in YAML and it's easy to learn. Rapid configuration and deployment of virtual machines ensure security measures can be scripted while enabling scaling by deployment to more or fewer machines as required to meet demand.
 
 The playbook implements the following tasks:
-- _TODO: In 3-5 bullets, explain the steps of the ELK installation play. E.g., install Docker; download image; etc._
-- ...
-- ...
+* Install Docker
+* Install Python
+* Install Docker Module
+* Increase virtual memory
+* Use more memory
+* Download and launch a docker elk container
+* Enable Docker on boot
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-![TODO: Update the path with the name of your screenshot of docker ps output](Images/docker_ps_output.png)
+<figure><img src=Diagrams/Docker-ps.PNG><figcaption></figcaption></figure>
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
-- _TODO: List the IP addresses of the machines you are monitoring_
+* Web-1: 10.0.0.6
+* Web-2: 10.0.0.7
 
 We have installed the following Beats on these machines:
-- _TODO: Specify which Beats you successfully installed_
+* Filebeat
+* Metricbeat
 
 These Beats allow us to collect the following information from each machine:
 - _TODO: In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., `Winlogbeat` collects Windows logs, which we use to track user logon events, etc._
@@ -257,8 +264,9 @@ These Beats allow us to collect the following information from each machine:
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the _____ file to _____.
-- Update the _____ file to include...
+- Copy the playbook file to the Ansible Docker Container.
+- Update the hosts file `/etc/ansible/hosts` to include the following
+<figure><img src=Diagrams/Host_file.PNG><figcaption></figcaption></figure>
 - Run the playbook, and navigate to ____ to check that the installation worked as expected.
 
 _TODO: Answer the following questions to fill in the blanks:_
